@@ -1,11 +1,8 @@
+import { IAuth } from "./auth";
 declare global {
   namespace Express {
     interface Request {
-      user?: {
-        name: string;
-        email: string;
-        password: string;
-      };
+      user?: IAuth;
       id?: string;
     }
   }

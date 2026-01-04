@@ -6,7 +6,7 @@ import { verifyToken, type JwtPayload } from "../utils/jwt.js";
 import { Auth } from "../models/auth.model.js";
 
 export const protect = asyncHandler(
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: Request, _res: Response, next: NextFunction) => {
     const authHeaders = req.headers.authorization;
     if (!authHeaders || !authHeaders.startsWith("Bearer"))
       return next(new AppError("Not authorized", httpStatusText.ERROR, 401));
@@ -24,7 +24,7 @@ export const protect = asyncHandler(
       );
     }
 
-    req.user = user as any;
+    req.user = user;
     next();
   }
 );

@@ -7,6 +7,7 @@ import "dotenv/config";
 import { errorHandler } from "./middlewares/errorHandler.js";
 
 import authRouter from "./routes/auth.route.js";
+import taskRouter from "./routes/tasks.route.js";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(helmet());
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/task", taskRouter);
 
 app.use(errorHandler);
 

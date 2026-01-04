@@ -57,6 +57,10 @@ export const login = asyncHandler(
     const token = generateToken(user._id.toString());
     await user.save();
 
-    sendResponse(res, 200, "Login successful", { data: token, user });
+    sendResponse(res, 200, "Login successful", {
+      name: user.name,
+      email: user.email,
+      token: token,
+    });
   }
 );
