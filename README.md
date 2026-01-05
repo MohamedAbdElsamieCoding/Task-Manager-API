@@ -18,6 +18,7 @@ A robust Task Management API built with modern web technologies. This project pr
 - **Framework**: [Express.js](https://expressjs.com/)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Database**: [MongoDB](https://www.mongodb.com/) with [Mongoose](https://mongoosejs.com/)
+- **Testing**: [Jest](https://jestjs.io/) with [ts-jest](https://kulshekhar.github.io/ts-jest/)
 - **Configuration**: [dotenv](https://github.com/motdotla/dotenv)
 
 ## 📁 Project Structure
@@ -33,6 +34,7 @@ src/
 ├── types/          # TypeScript definitions
 ├── app.ts          # Express application setup
 └── server.ts       # Server entry point
+tests/              # Automated tests (Unit & Integration)
 ```
 
 ## ⚙️ Setup & Installation
@@ -70,6 +72,23 @@ src/
     npm run build
     npm start
     ```
+
+## 🧪 Testing
+
+The project uses **Jest** for automated testing.
+
+- **Run all tests**:
+  ```bash
+  npm test
+  ```
+- **Run tests in watch mode**:
+  ```bash
+  npm run test:watch
+  ```
+- **Generate coverage report**:
+  ```bash
+  npm run test:coverage
+  ```
 
 ## 🔌 API Endpoints (Planned)
 
