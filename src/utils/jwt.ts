@@ -12,7 +12,7 @@ export const generateToken = (userId: string): string => {
 
 export const verifyToken = (token: string): JwtPayload | null => {
   try {
-    const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload;
+    const decoded: JwtPayload = jwt.verify(token, JWT_SECRET) as JwtPayload;
     return decoded;
   } catch (error) {
     return null;
