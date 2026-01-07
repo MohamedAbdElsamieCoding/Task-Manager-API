@@ -1,4 +1,5 @@
 import { Document, Types } from "mongoose";
+import { Priority } from "./priority";
 
 export interface ITask extends Document {
   title: string;
@@ -7,4 +8,8 @@ export interface ITask extends Document {
   updatedAt: Date;
   completed: boolean;
   userId: Types.ObjectId | string;
+  dueTo: Date;
+  priority: Priority;
 }
+
+export interface TaskDocument extends ITask, Document {}

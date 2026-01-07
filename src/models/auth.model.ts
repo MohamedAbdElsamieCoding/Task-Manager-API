@@ -6,7 +6,8 @@ const authSchema = new Schema<IAuth>(
   {
     name: String,
     email: String,
-    password: String,
+    password: { type: String, select: false },
+    refreshToken: { type: String, select: false },
   },
   { timestamps: true }
 );
