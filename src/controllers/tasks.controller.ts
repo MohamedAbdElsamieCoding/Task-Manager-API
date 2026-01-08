@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import { Task } from "../models/task.model";
 import { QueryFilter } from "mongoose";
-import { ITask, TaskDocument } from "../types/task";
+import { TaskDocument } from "../types/task";
 import { asyncHandler } from "../middlewares/asyncHandler";
 import { AppError } from "../utils/appError";
 import { httpStatusText } from "../utils/httpStatusText";

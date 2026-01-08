@@ -2,7 +2,8 @@ import type { Request, Response, NextFunction } from "express";
 import { httpStatusText } from "../utils/httpStatusText.js";
 import { asyncHandler } from "./asyncHandler.js";
 import { AppError } from "../utils/appError.js";
-import { verifyToken, type JwtPayload } from "../utils/jwt.js";
+import { verifyToken } from "../utils/jwt.js";
+import { JwtPayload } from "../types/jwt.js";
 import { Auth } from "../models/auth.model.js";
 
 export const protect = asyncHandler(

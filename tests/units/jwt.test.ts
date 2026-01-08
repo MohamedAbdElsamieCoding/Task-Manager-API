@@ -1,16 +1,12 @@
-import jwt from "jsonwebtoken";
 import {
   generateAccessToken,
   generateRefreshToken,
   verifyToken,
 } from "../../src/utils/jwt";
 
-jest.mock("jsonwebtoken");
-
 describe("JWT Utils", () => {
   // Arrange
   const userId = "testUser123";
-  const mockedVerify = jwt.verify as jest.Mock;
   it("should generate a valid access token and refresh token", () => {
     // Act
     const accessToken = generateAccessToken(userId);
@@ -27,10 +23,5 @@ describe("JWT Utils", () => {
     const decoded = verifyToken(accessToken);
     expect(decoded).not.toBeNull();
     expect(decoded?.id).toBe(userId);
-  });
-  it("should return null if token is invalid", () => {
-    mockedVerify.mockImplementation(() => {
-      throw new Error("invalid token");
-    });
   });
 });
