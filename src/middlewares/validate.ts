@@ -16,9 +16,7 @@ export const validate =
     } catch (error) {
       if (error instanceof ZodError) {
         const message = error.issues
-          .map((err) => {
-            `${err.path.join(".")} : ${err.message}`;
-          })
+          .map((err) => `${err.path.join(".")} : ${err.message}`)
           .join(", ");
         return next(new AppError(message, httpStatusText.ERROR, 400));
       }

@@ -13,7 +13,7 @@ export const createTaskSchema = z.object({
     priority: z
       .enum([Priority.HIGH, Priority.LOW, Priority.MEDIUM])
       .default(Priority.MEDIUM),
-    dueTo: z.date(),
+    dueTo: z.coerce.date(),
   }),
 });
 
@@ -26,6 +26,6 @@ export const updateTaskSchema = z.object({
       .enum([Priority.HIGH, Priority.LOW, Priority.MEDIUM])
       .default(Priority.MEDIUM)
       .optional(),
-    dueTo: z.date().optional(),
+    dueTo: z.coerce.date().optional(),
   }),
 });
