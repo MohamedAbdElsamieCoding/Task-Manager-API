@@ -53,10 +53,10 @@ A robust, enterprise-ready Task Management API built with Node.js, TypeScript, a
 
     ```env
     PORT=5000
-    MONGODB_URI=your_mongodb_uri
+    MONGO_URL=your_mongodb_uri
     JWT_SECRET=your_secret
     JWT_EXPIRES_IN=1d
-    REFRESH_TOKEN_SECRET=your_refresh_secret
+    REFRESH_SECRET=your_refresh_secret
     ```
 
 4.  **Run Application**:
