@@ -6,14 +6,14 @@ import {
   getAllTasks,
   getSingleTask,
   updateTask,
-} from "../controllers/tasks.controller";
-import { protect } from "../middlewares/protect";
-import { validate } from "../middlewares/validate";
+} from "../controllers/tasks.controller.js";
+import { protect } from "../middlewares/protect.js";
+import { validate } from "../middlewares/validate.js";
 import {
   createTaskSchema,
   updateTaskSchema,
-} from "../validations/task.validate";
-import { publicLimiter } from "../middlewares/rate-limit";
+} from "../validations/task.validate.js";
+import { publicLimiter } from "../middlewares/rate-limit.js";
 
 const router = Router();
 

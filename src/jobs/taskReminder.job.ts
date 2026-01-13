@@ -1,9 +1,9 @@
 import { Job } from "agenda";
-import { agenda } from "../config/agenda";
-import { PushNotificationJobData } from "../types/pushNotification";
-import { sendNotification } from "../services/push.service";
-import { AppError } from "../utils/appError";
-import { httpStatusText } from "../utils/httpStatusText";
+import { agenda } from "../config/agenda.js";
+import { PushNotificationJobData } from "../types/pushNotification.js";
+import { sendNotification } from "../services/push.service.js";
+import { AppError } from "../utils/appError.js";
+import { httpStatusText } from "../utils/httpStatusText.js";
 
 agenda.define(
   "send-push-notification",

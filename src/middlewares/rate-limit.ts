@@ -1,7 +1,7 @@
 import { rateLimit } from "express-rate-limit";
 import { Request, Response } from "express";
-import { httpStatusText } from "../utils/httpStatusText";
-import { RateLimitOptions } from "../types/rate-limit";
+import { httpStatusText } from "../utils/httpStatusText.js";
+import { RateLimitOptions } from "../types/rate-limit.js";
 
 export const createRateLimiter = ({
   windowMs,

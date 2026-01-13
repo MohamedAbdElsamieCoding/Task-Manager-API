@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Priority } from "../types/priority";
+import { Priority } from "../types/priority.js";
 
 export const createTaskSchema = z.object({
   body: z.object({

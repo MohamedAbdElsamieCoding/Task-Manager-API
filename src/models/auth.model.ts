@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { IAuth } from "../types/auth";
+import { IAuth } from "../types/auth.js";
 import bcrypt from "bcrypt";
 
 const authSchema = new Schema<IAuth>(

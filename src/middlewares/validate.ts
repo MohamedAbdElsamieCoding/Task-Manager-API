@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { AppError } from "../utils/appError";
+import { AppError } from "../utils/appError.js";
 import { ZodError, ZodObject } from "zod";
-import { httpStatusText } from "../utils/httpStatusText";
+import { httpStatusText } from "../utils/httpStatusText.js";
 
 export const validate =
   (schema: ZodObject) =>

@@ -1,5 +1,5 @@
 import { Document, Types } from "mongoose";
-import { Priority } from "./priority";
+import { Priority } from "./priority.js";
 
 export interface ITask extends Document {
   title: string;

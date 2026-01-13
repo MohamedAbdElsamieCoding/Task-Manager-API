@@ -1,12 +1,12 @@
 import type { Request, Response, NextFunction } from "express";
-import { Task } from "../models/task.model";
+import { Task } from "../models/task.model.js";
 import { QueryFilter } from "mongoose";
-import { TaskDocument } from "../types/task";
-import { asyncHandler } from "../middlewares/asyncHandler";
-import { AppError } from "../utils/appError";
-import { httpStatusText } from "../utils/httpStatusText";
-import { sendResponse } from "../utils/response";
-import { agenda } from "../config/agenda";
+import { TaskDocument } from "../types/task.js";
+import { asyncHandler } from "../middlewares/asyncHandler.js";
+import { AppError } from "../utils/appError.js";
+import { httpStatusText } from "../utils/httpStatusText.js";
+import { sendResponse } from "../utils/response.js";
+import { agenda } from "../config/agenda.js";
 
 // Create task
 export const createTask = asyncHandler(
