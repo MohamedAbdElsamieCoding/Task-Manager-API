@@ -1,41 +1,37 @@
-# Task Manager API
+# Task Manager API 🚀
 
-A robust Task Management API built with modern web technologies. This project provides a full-featured backend for managing tasks, complete with user authentication and comprehensive CRUD operations.
+A robust, enterprise-ready Task Management API built with Node.js, TypeScript, and MongoDB. This project provides a full-featured backend for managing tasks, complete with user authentication, automated reminders, and professional documentation.
 
-## 🚀 Features
+## 🌟 Key Features
 
-- **Authentication**: Secure user Signup and Login (JWT suggested).
+- **Authentication & Security**:
+  - Secure Signup/Login with JWT (Access & Refresh Tokens).
+  - Password hashing with Bcrypt.
+  - Rate Limiting to prevent brute-force attacks.
+  - Protected routes for task management.
 - **Task Management**:
-  - **Add Task**: Create new tasks with ease.
-  - **Get All Tasks**: Retrieve a complete list of your tasks.
-  - **Edit Task**: Update existing task details.
-  - **Delete Task**: Remove specific tasks.
-  - **Delete All Tasks**: Clear your entire task list with one action.
+  - Full CRUD: Create, Read, Update, Delete tasks and Delete All.
+  - **Priority System**: Categorize tasks by Low, Medium, or High priority.
+  - **Deadlines**: Set `dueTo` dates for every task.
+  - **Filtering & Search**: Powerful search and filtering by status, priority, and content.
+  - **Pagination**: Efficient retrieval of large task lists.
+- **Automated Reminders**:
+  - Background job processing using **Agenda**.
+  - Push notifications via **Firebase Admin SDK**.
+- **Documentation**:
+  - Interactive API documentation using **Swagger UI**.
 
 ## 🛠️ Tech Stack
 
-- **Runtime**: [Node.js](https://nodejs.org/)
-- **Framework**: [Express.js](https://expressjs.com/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Database**: [MongoDB](https://www.mongodb.com/) with [Mongoose](https://mongoosejs.com/)
-- **Testing**: [Jest](https://jestjs.io/) with [ts-jest](https://kulshekhar.github.io/ts-jest/)
-- **Configuration**: [dotenv](https://github.com/motdotla/dotenv)
-
-## 📁 Project Structure
-
-```text
-src/
-├── controllers/    # Request handlers
-├── models/         # Database schemas
-├── routes/         # API endpoint definitions
-├── middlewares/    # Custom Express middlewares (Auth, Errors)
-├── services/       # Business logic (optional)
-├── utils/          # Helper functions
-├── types/          # TypeScript definitions
-├── app.ts          # Express application setup
-└── server.ts       # Server entry point
-tests/              # Automated tests (Unit & Integration)
-```
+- **Backend**: Node.js, Express.js (ES Modules)
+- **Language**: TypeScript
+- **Database**: MongoDB with Mongoose
+- **Background Jobs**: Agenda
+- **Notifications**: Firebase Admin
+- **Validation**: Zod
+- **Documentation**: Swagger (OpenAPI 3.0)
+- **Security**: Helmet, CORS, Express-Rate-Limit, BCrypt, JWT
+- **Testing**: Jest with MongoDB Memory Server
 
 ## ⚙️ Setup & Installation
 
@@ -53,58 +49,47 @@ tests/              # Automated tests (Unit & Integration)
     ```
 
 3.  **Configure Environment Variables**:
-    Create a `.env` file in the root directory and add:
+    Create a `.env` file in the root:
 
     ```env
-    PORT=3000
-    MONGODB_URI=your_mongodb_connection_string
-    JWT_SECRET=your_jwt_secret
+    PORT=5000
+    MONGODB_URI=your_mongodb_uri
+    JWT_SECRET=your_secret
+    JWT_EXPIRES_IN=1d
+    REFRESH_TOKEN_SECRET=your_refresh_secret
     ```
 
-4.  **Run in Development Mode**:
-
+4.  **Run Application**:
     ```bash
-    npm run dev
+    npm run dev  # Development (tsx watch)
     ```
 
-5.  **Build for Production**:
-    ```bash
-    npm run build
-    npm start
-    ```
+## 🔌 API Documentation
+
+Once the server is running, visit:
+
+- **Swagger UI**: `http://localhost:5000/api-docs`
+- **JSON Spec**: `http://localhost:5000/api-docs.json`
+
+### Core Endpoints
+
+| Method     | Endpoint                 | Description                       |
+| :--------- | :----------------------- | :-------------------------------- |
+| **POST**   | `/api/v1/auth/register`  | Register new user                 |
+| **POST**   | `/api/v1/auth/login`     | Login user                        |
+| **PATCH**  | `/api/v1/auth/update-me` | Update profile                    |
+| **POST**   | `/api/v1/task`           | Create a task                     |
+| **GET**    | `/api/v1/task`           | Get all tasks (Filters available) |
+| **PATCH**  | `/api/v1/task/:taskId`   | Update a task                     |
+| **DELETE** | `/api/v1/task/:taskId`   | Delete a task                     |
 
 ## 🧪 Testing
 
-The project uses **Jest** for automated testing.
-
-- **Run all tests**:
-  ```bash
-  npm test
-  ```
-- **Run tests in watch mode**:
-  ```bash
-  npm run test:watch
-  ```
-- **Generate coverage report**:
-  ```bash
-  npm run test:coverage
-  ```
-
-## 🔌 API Endpoints (Planned)
-
-### Auth
-
-- `POST /api/auth/register` - New user registration
-- `POST /api/auth/login` - User login
-
-### Tasks
-
-- `POST /api/tasks` - Create a new task
-- `GET /api/tasks` - Get all tasks
-- `PATCH /api/tasks/:id` - Update a task
-- `DELETE /api/tasks/:id` - Delete a task
-- `DELETE /api/tasks` - Delete all tasks
+```bash
+npm test              # Run all integration tests
+npm run test:watch    # Watch mode
+```
 
 ---
 
-Developed as a part of a professional task management solution.
+Developed by **Mohamed Amr**

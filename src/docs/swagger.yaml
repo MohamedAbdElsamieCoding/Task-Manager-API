@@ -1,0 +1,199 @@
+openapi: 3.0.0
+info:
+  title: Task Manager API
+  version: 1.0.0
+  description: API Documentation for Task Manager API
+  contact:
+    name: Mohamed Amr
+    email: mohammed.amr.backend@gmail.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:5000
+    description: Development server
+
+tags:
+  - name: Auth
+    description: User authentication and profile management
+  - name: Tasks
+    description: Task CRUD operations
+
+paths:
+  /api/v1/auth/register:
+    post:
+      tags: [Auth]
+      summary: Create a new account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+      responses:
+        201:
+          description: User Created
+        409:
+          description: Email already exists
+
+  /api/v1/auth/login:
+    post:
+      tags: [Auth]
+      summary: Login to account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        200:
+          description: Login successfully
+        401:
+          description: Invalid credentials
+
+  /api/v1/auth/refresh:
+    post:
+      tags: [Auth]
+      summary: Refresh access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refreshToken:
+                  type: string
+      responses:
+        200:
+          description: Token refreshed
+        401:
+          description: Invalid refresh token
+
+  /api/v1/auth/update-me:
+    patch:
+      tags: [Auth]
+      summary: Update current user profile
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateMeRequest"
+      responses:
+        200:
+          description: Profile updated
+        401:
+          description: Unauthorized
+
+  /api/v1/auth/update-password:
+    patch:
+      tags: [Auth]
+      summary: Change user password
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangePasswordRequest"
+      responses:
+        200:
+          description: Password updated
+        400:
+          description: Invalid current password
+
+  /api/v1/task:
+    get:
+      tags: [Tasks]
+      summary: Get all tasks (with filters)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema: { type: integer, default: 1 }
+        - name: search
+          in: query
+          schema: { type: string }
+      responses:
+        200:
+          description: Success
+    post:
+      tags: [Tasks]
+      summary: Create new task
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TaskRequest"
+      responses:
+        201:
+          description: Created
+
+  /api/v1/task/{taskId}:
+    get:
+      tags: [Tasks]
+      summary: Get single task details
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        200:
+          description: Success
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    RegisterRequest:
+      type: object
+      required: [name, email, password]
+      properties:
+        name: { type: string }
+        email: { type: string, format: email }
+        password: { type: string, format: password }
+
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email: { type: string, format: email }
+        password: { type: string, format: password }
+
+    TaskRequest:
+      type: object
+      required: [title]
+      properties:
+        title: { type: string }
+        content: { type: string }
+        dueTo: { type: string, format: date-time }
+        priority: { type: string, enum: [low, medium, high] }
+
+    UpdateMeRequest:
+      type: object
+      properties:
+        name: { type: string }
+        email: { type: string, format: email }
+
+    ChangePasswordRequest:
+      type: object
+      required: [currentPassword, newPassword]
+      properties:
+        currentPassword: { type: string, format: password }
+        newPassword: { type: string, format: password }

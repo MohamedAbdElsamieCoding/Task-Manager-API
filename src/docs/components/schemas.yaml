@@ -1,0 +1,36 @@
+RegisterRequest:
+  type: object
+  required: [name, email, password]
+  properties:
+    name: { type: string }
+    email: { type: string, format: email }
+    password: { type: string, format: password }
+
+LoginRequest:
+  type: object
+  required: [email, password]
+  properties:
+    email: { type: string, format: email }
+    password: { type: string, format: password }
+
+TaskRequest:
+  type: object
+  required: [title]
+  properties:
+    title: { type: string }
+    content: { type: string }
+    dueTo: { type: string, format: date-time }
+    priority: { type: string, enum: [low, medium, high] }
+
+UpdateMeRequest:
+  type: object
+  properties:
+    name: { type: string }
+    email: { type: string, format: email }
+
+ChangePasswordRequest:
+  type: object
+  required: [currentPassword, newPassword]
+  properties:
+    currentPassword: { type: string, format: password }
+    newPassword: { type: string, format: password }

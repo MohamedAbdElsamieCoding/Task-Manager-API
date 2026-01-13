@@ -14,11 +14,12 @@ import {
 } from "../validations/auth.validate.js";
 import { validate } from "../middlewares/validate.js";
 import { protect } from "../middlewares/protect.js";
+import { authLimiter } from "../middlewares/rate-limit.js";
 
 const router = Router();
 
-router.route("/register").post(validate(registerSchema), register);
-router.route("/login").post(validate(loginSchema), login);
+router.route("/register").post(validate(registerSchema), authLimiter, register);
+router.route("/login").post(validate(loginSchema), authLimiter, login);
 router
   .route("/update-me")
   .patch(protect, validate(updateProfileSchema), updateMe);

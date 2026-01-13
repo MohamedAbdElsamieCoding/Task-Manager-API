@@ -1,0 +1,45 @@
+tasksRoot:
+  get:
+    tags: [Tasks]
+    summary: Get all tasks (with filters)
+    security:
+      - bearerAuth: []
+    parameters:
+      - name: page
+        in: query
+        schema: { type: integer, default: 1 }
+      - name: search
+        in: query
+        schema: { type: string }
+    responses:
+      200:
+        description: Success
+  post:
+    tags: [Tasks]
+    summary: Create new task
+    security:
+      - bearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas.yaml#/TaskRequest"
+    responses:
+      201:
+        description: Created
+
+taskById:
+  get:
+    tags: [Tasks]
+    summary: Get single task details
+    security:
+      - bearerAuth: []
+    parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema: { type: string }
+    responses:
+      200:
+        description: Success
