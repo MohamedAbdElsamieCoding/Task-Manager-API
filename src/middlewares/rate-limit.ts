@@ -14,7 +14,7 @@ export const createRateLimiter = ({
     message: message || "Too many requests",
     legacyHeaders: false,
     standardHeaders: true,
-    handler: (req: Request, res: Response) => {
+    handler: (_req: Request, res: Response) => {
       res.status(429).json({
         status: httpStatusText.FAIL,
         message: message,
